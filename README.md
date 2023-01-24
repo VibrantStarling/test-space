@@ -6,7 +6,7 @@ Each ortholog is asigned a GO term based on predicted function, which are then f
 Comparing GO term enrichment between genomes can provide insights into how those organisms might be interacting with their environment.
 
 ## First I compared the organisms on toxobd
-I transformed orthologs for each comparison and had a quick looked look at KEGG metabolic pathways. VEG seems to cause the number of KEGG pathways found to decrease from ~2000 to 150. Without further analysis, I'd guess VEG less complete or less annotated rather than phylogenetically distant as VEG and ME49 share more ortholog groups with each other than with GT1.
+I transformed orthologs for each comparison and had a quick looked look at KEGG metabolic pathways. VEG seems to cause the number of KEGG pathways found to decrease from ~2000 to 150. Without further analysis, I'd guess VEG either less complete or less annotated rather than phylogenetically distant, as VEG and ME49 share more ortholog groups with each other than with GT1 (see figure 1).
 
 *3 way comparison*
 https://toxodb.org/toxo/app/workspace/strategies/import/6d6601110c504d7b
@@ -135,6 +135,9 @@ groups = orthopresence.groupby('category')['orthologs'].count().drop(index='no-o
 I've opted for a venn diagram here for the sake of time.
 Previously, I have used complexupset in R for something like this to make an upsetplot.
 
+Ideally, if I had time,  I'd also like to do an enrichment analysis between each genome to see what functions are common/different between each set.
+I'd take the GO enrichment analysis from the toxodb, but with visulaisation like g:GOSt displaying fold enrichment and p-values https://biit.cs.ut.ee/gprofiler/page/docs
+
 ```
 v = venn3_unweighted(subsets=(groups['GT1'], groups['ME49'], groups['ME49-GT1'], groups['VEG'], groups['GT1-VEG'], groups['ME49-VEG'], groups['ME49-VEG-GT1']), 
           set_labels = ('GT1', 'ME49', 'VEG'))
@@ -144,7 +147,9 @@ plt.show()
 ```
 ![Venn diagram](https://github.com/VibrantStarling/test-space/blob/main/venn_diagram.png)
 
-Additionally, non coding genes with no orthology: 
+Figure 1. A venn diagram showing the number of orthologs common between each of the three Toxoplasma gondii strains
+
+Table 1. Non coding genes with no orthology: 
 
 | Genome        | Genes with no orthology
 | ------------- |-------------| 
@@ -153,5 +158,4 @@ Additionally, non coding genes with no orthology:
 | VEG | 153      |   
                
 
-Ideally, if I had time,  I'd also like to do an enrichment analysis between each genome to see what functions are common/different between each set.
-I'd take the GO enrichment analysis from the toxodb, but with visulaisation like g:GOSt displaying fold enrichment and p-values https://biit.cs.ut.ee/gprofiler/page/docs
+
