@@ -5,7 +5,8 @@ Ortholog mapping finds related genes across different species that have evolved 
 Each ortholog is asigned a GO term based on predicted function, which are then further grouped into 3 main categories: biological, cellular, and molecular function.
 Comparing GO term enrichment between genomes can provide insights into how those organisms might be interacting with their environment.
 
-## First I compared the organisms on toxobd
+## Comparing organisms on toxoDB
+
 I transformed orthologs for each comparison and had a quick looked look at KEGG metabolic pathways. VEG seems to cause the number of KEGG pathways found to decrease from ~2000 to 150. Without further analysis, I'd guess VEG either less complete or less annotated rather than phylogenetically distant, as VEG and ME49 share more ortholog groups with each other than with GT1 (see figure 1).
 
 *3 way comparison*
@@ -36,7 +37,8 @@ https://orthomcl.org/orthomcl/app/workspace/strategies/import/a625de77430d062a
 https://orthomcl.org/orthomcl/app/workspace/strategies/import/d1c14da847563e5d
 
 
-## Next I downloaded the orthogroup data given by toxoDB for each genome
+## Finding common orthologs
+Next I downloaded the orthogroup data given by toxoDB for each genome and extracted information on which orthologs are shared
 
 ```
 # load modules
