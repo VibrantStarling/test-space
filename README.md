@@ -84,15 +84,16 @@ for i in orthologs:
             orthopresence['ME49'][i] += 1
         elif (row[1] == i) and (row[0] == 'Toxoplasma gondii GT1'):
             orthopresence['GT1'][i] += 1
-
-
+            
 # save the count data as a new file        
 
 orthopresence.to_csv('orthopresence.csv', header=True)
 
 orthopresence = pd.read_csv('orthopresence.csv')
+```
 
-# sort into categories, add totals
+Sort into categories
+```
 orthopresence['category'] = 'a'
 orthopresence['total'] = orthopresence['ME49']+orthopresence['GT1']+ orthopresence['VEG']
 
